@@ -97,7 +97,7 @@ const App = () => {
         </Text>
       <Text style={styles.role}>
         🚀 Aspiring developer
-      </Text>
+      </Text> 
         <Text style={styles.description}>
           Building things where software meets hardware.
         </Text>
