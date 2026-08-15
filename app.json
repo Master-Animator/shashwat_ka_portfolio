@@ -1,16 +1,17 @@
-    {
-    "expo": {
-        "name": "Shashwat Portfolio",
-        "slug": "shashwat-portfolio-rn",
-        "version": "1.0.0",
-        "orientation": "default",
-        "userInterfaceStyle": "dark",
-        "web": {
-            "bundler": "metro"
-        }
-        
+{
+  "expo": {
+    "name": "Shashwat Portfolio",
+    "slug": "shashwat-portfolio-rn",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "dark",
+
+    "web": {
+      "bundler": "metro"
     },
+
     "experiments": {
-  "baseUrl": "/shashwat_ka_portfolio"
-}
+      "baseUrl": "/shashwat_ka_portfolio"
+    }
+  }
 }
