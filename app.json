@@ -8,5 +8,9 @@
         "web": {
             "bundler": "metro"
         }
-    }
+        
+    },
+    "experiments": {
+  "baseUrl": "/shashwat_ka_portfolio"
+}
 }
