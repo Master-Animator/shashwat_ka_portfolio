@@ -17,7 +17,9 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingStep, setLoadingStep] = useState(0);
   const [isViewProjectHovered, setViewProjectHovered] = useState(false)
+  const [isProjectText , setProjectText] = useState(false)
   const [isConcatHovered, setConcatHovered] = useState(false)
+  const [isConcatText , setConcatText] = useState(false)
 
   const openLink = (url) => {
     Linking.openURL(url);
@@ -105,37 +107,36 @@ const App = () => {
         <View style={styles.buttonRow}>
 
           <Pressable
-            style={({ pressed }) => [
-              styles.greenButton,
-              pressed && styles.buttonPressed,
-            ]}
             onPress={() =>
               openLink('https://github.com/shashwat-dev')
             }
-            onHoverIn={()=>setConcatHovered(true)}
-            onHoverOut={()=>setConcatHovered(false)}
+            onHoverIn={()=>{setViewProjectHovered(true);setProjectText(true)}}
+            onHoverOut={()=>{setViewProjectHovered(null);setProjectText(false)}}
+            style={({pressed})=>[
+              styles.greenButton,
+              isViewProjectHovered && {backgroundColor:"#30a341", borderWidth:0},
+              pressed && {backgroundColor:"#30a341",opacity:0.3, borderWidth:2}
+            ]}
           ><Text style={styles.githubIcon}>●</Text>
-            <Text style={styles.greenButtonText}>
+            <Text style={[styles.greenButtonText, isProjectText && {color:"#ffffff"}]}>
               VIEW PROJECTS
             </Text>
           </Pressable>
 
           <Pressable
-            style={({ pressed }) => [
+              onPress={()=>openLink('mailto:shashwat.sharma.dev@gmail.com')}
+              onHoverIn={()=>{setConcatHovered(true);setConcatText(true)}}
+              onHoverOut={()=>{setConcatHovered(null);setConcatText(false)}}
+            style={({pressed})=>[
               styles.cyanButton,
-              pressed && styles.buttonPressed,
+              isConcatHovered && {backgroundColor:"#00d9ff"},
+              pressed && {backgroundColor:"#c6d0d2",opacity: 0.3, borderWidth:2},
             ]}
-            onPress={() =>
-              openLink(
-                'mailto:shashwat.sharma.dev@gmail.com'
-              )
-            }
           >
-            <Text style={styles.arrowIcon}>
+            <Text style={[styles.arrowIcon,isConcatText && {color:"#ffffff"}]}>
               ↓
             </Text>
-
-            <Text style={styles.cyanButtonText}>
+            <Text style={[styles.cyanButtonText,isConcatText && {color:"#ffffff"}]}> 
               CONNECT
             </Text>
           </Pressable>
@@ -154,6 +155,10 @@ const App = () => {
 
       </View>
 
+    </View>
+
+    <View style={styles.cardLeftHOlder}>
+            <Text style={{color:"#0000"}}>●</Text>
     </View>
   </ScrollView>
 </View>
@@ -199,11 +204,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bg,
   },
 
-
-  /* =========================
-     HERO
-     ========================= */
-
   hero: {
     width: '100%',
     height: 660,
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     width: '100%',
-    height: '100%',
+    height: '92%',
   },
 
   heroOverlay: {
@@ -283,10 +283,6 @@ const styles = StyleSheet.create({
   },
 
 
-  /* =========================
-     BUTTONS
-     ========================= */
-
   buttonRow: {
     flexDirection: 'row',
     gap: 16,
@@ -295,15 +291,12 @@ const styles = StyleSheet.create({
   greenButton: {
     height: 48,
     minWidth: 165,
-
     borderWidth: 1,
     borderColor: COLORS.green,
     borderRadius: 5,
-
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-
     paddingHorizontal: 18,
 
     backgroundColor: 'rgba(0, 255, 102, 0.025)',
@@ -312,30 +305,26 @@ const styles = StyleSheet.create({
   cyanButton: {
     height: 48,
     minWidth: 140,
-
     borderWidth: 1,
     borderColor: COLORS.cyan,
     borderRadius: 5,
-
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-
     paddingHorizontal: 18,
-
     backgroundColor: 'rgba(0, 217, 255, 0.025)',
   },
 
   greenButtonText: {
     color: COLORS.green,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '700',
     letterSpacing: 0.5,
   },
 
   cyanButtonText: {
     color: COLORS.cyan,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '700',
     letterSpacing: 0.5,
   },
@@ -353,15 +342,8 @@ const styles = StyleSheet.create({
     lineHeight: 27,
   },
 
-  buttonPressed: {
-    opacity: 0.55,
-    transform: [{ scale: 0.98 }],
-  },
 
-
-  /* =========================
-     SYSTEM STATUS
-     ========================= */
+ cardLeftHOlder:{},
 
   systemStatus: {
     position: 'absolute',
