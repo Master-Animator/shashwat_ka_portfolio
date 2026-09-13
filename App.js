@@ -958,8 +958,8 @@ const styles = StyleSheet.create({
 
   systemStatus: {
     position: 'absolute',
-    borderWidth:1,
-    borderColor: "#bdfe63",
+    borderWidth:2,
+    borderColor: "#5c84a2",
     borderRadius: 30,
     
     top: 20,
@@ -973,9 +973,9 @@ const styles = StyleSheet.create({
   },
 
   statusDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
 
     // marginTop: 20,
     padding:2,
@@ -987,7 +987,7 @@ const styles = StyleSheet.create({
   statusText: {
     color: COLORS.green,
     fontFamily: 'monospace',
-    fontSize: 10,
+    fontSize: 15,
     fontWeight: '700',
 
     // marginTop: 20,
