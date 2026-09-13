@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View,  Image,  Pressable,  ScrollView,
 Linking,  Dimensions,
@@ -17,14 +17,15 @@ const COLORS = {
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingStep, setLoadingStep] = useState(0);
-
+  const scrollViewRef = useRef(null);
   const [isViewProjectHovered, setViewProjectHovered] = useState(false);
   const [isProjectText, setProjectText] = useState(false);
   const [isGitHovered , setisGitHovered] = useState(false);
   const [isInstaHovered , setisInstaHovered] = useState(false);
   const [isEmailHovered , setEmailHovered] = useState(false);
   const [isSpotifyHovered , setSpotifyHoveredHovered] = useState(false);
-  
+  const [isconnectHovered , setisconnectHovered] = useState(false);
+  const [isconnectText,setisconnectText] = useState(false);
   const [isConcatHovered, setConcatHovered] = useState(false);
   const [isConcatText, setConcatText] = useState(false);
 
@@ -84,6 +85,7 @@ useEffect(() => {
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.scrollContent}
+            ref={scrollViewRef}
           >
             <View style={styles.hero}>
 
@@ -173,12 +175,7 @@ useEffect(() => {
                   {/* CONNECT */}
 
                   <Pressable
-                    onPress={() =>
-                      openLink(
-                        'mailto:shashwat.sharma.dev@gmail.com'
-                      )
-                    }
-
+                    onPress={() =>{scrollViewRef.current?.scrollToEnd({ animated: true });}}
                     onHoverIn={() => {
                       setConcatHovered(true);
                       setConcatText(true);
@@ -397,7 +394,7 @@ useEffect(() => {
         onHoverOut={()=>setEmailHovered(false)}
         >
         <Image source={email} style={{height:60, width:60,marginLeft:20 , marginTop:  15}}/>
-        <Text style={{color:"#fff",padding:5,marginLeft:25, paddingTop:10}}>Email</Text>
+        <Text style={{color:"#fff",padding:5,marginLeft:30, paddingTop:10}}>Email</Text>
         <Text style={{color:"#e9e8e8", opacity:0.8,marginLeft:10}}>@raven90010</Text>
         <View style={{borderWidth:1, borderColor:"#fff", width:"40px",marginTop:25,marginLeft:30}}/>
       </Pressable>
@@ -420,7 +417,345 @@ useEffect(() => {
   </View>
 
 </View>
+{/* FOOTER */}
 
+<View
+  style={{
+    flexDirection: 'row',
+    minHeight: 235,
+    marginTop: 0,
+    paddingTop: 5,
+    paddingBottom: 25,
+    backgroundColor: '#020506',
+  }}
+>
+
+  {/* LEFT — ABOUT */}
+  <View
+    style={{
+      flex: 1,
+      paddingLeft: 38,
+      paddingRight: 35,
+      borderRightWidth: 1,
+      borderRightColor: '#10191c',
+    }}
+  >
+    <Text
+      style={{
+        color: '#00ff66',
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 18,
+      }}
+    >
+      Shashwat
+    </Text>
+
+    <Text
+      style={{
+        color: '#b7bcbc',
+        fontSize: 14,
+        lineHeight: 25,
+        maxWidth: 280,
+      }}
+    >
+      Aspiring developer passionate{'\n'}
+      about building innovative solutions{'\n'}
+      where software meets hardware.
+    </Text>
+
+    {/* SOCIAL ICONS */}
+    <View
+      style={{
+        flexDirection: 'row',
+        gap: 25,
+        marginTop: 22,
+        alignItems: 'center',
+      }}
+    >
+
+      <Pressable
+        onPress={() =>
+          openLink('https://github.com/shashwat-dev')
+        }
+      >
+        <Image
+          source={git}
+          style={{
+            width: 25,
+            height: 25,
+          }}
+        />
+      </Pressable>
+
+      <Pressable
+        onPress={() =>
+          openLink(
+            'https://www.instagram.com/_.shashwhat?igsh=bTI5M2MzdHV0dWFl'
+          )
+        }
+      >
+        <Image
+          source={insta}
+          style={{
+            width: 25,
+            height: 25,
+          }}
+        />
+      </Pressable>
+
+      <Pressable
+        onPress={() =>
+          openLink('mailto:shashwat.sharma.dev@gmail.com')
+        }
+      >
+        <Image
+          source={email}
+          style={{
+            width: 28,
+            height: 28,
+          }}
+        />
+      </Pressable>
+
+      <Pressable
+        onPress={() =>
+          openLink(
+            'https://open.spotify.com/user/31upv3me3ade22kstotpg3pdqjcm'
+          )
+        }
+      >
+        <Image
+          source={spotify}
+          style={{
+            width: 27,
+            height: 27,
+          }}
+        />
+      </Pressable>
+
+    </View>
+  </View>
+
+
+  {/* MIDDLE — QUICK LINKS */}
+  <View
+    style={{
+      flex: 0.85,
+      paddingLeft: 55,
+      borderRightWidth: 1,
+      borderRightColor: '#10191c',
+    }}
+  >
+
+    <Text
+      style={{
+        color: '#ffffff',
+        fontSize: 17,
+        fontWeight: 'bold',
+        marginBottom: 18,
+        textDecorationLine:"underline"
+      }}
+    >
+      Quick Notes
+    </Text>
+
+    <Pressable style={{width:80}}>
+      <Text
+        style={{
+          color: '#b7bcbc',
+          fontSize: 14,
+          marginBottom: 14,
+        }}
+      >
+        <Text style={{ color: '#00ff66' }}>{'> '}</Text>
+        Home
+      </Text>
+    </Pressable>
+
+    <View style={{width:80}}>
+      <Text
+        style={{
+          color: '#b7bcbc',
+          fontSize: 14,
+          marginBottom: 14,
+        }}
+      >
+        <Text style={{ color: '#00ff66' }}>{'> '}</Text>
+        Skills
+      </Text>
+    </View>
+
+    <View style={{width:80}}>
+      <Text
+        style={{
+          color: '#b7bcbc',
+          fontSize: 14,
+          marginBottom: 14,
+        }}
+      >
+        <Text style={{ color: '#00ff66' }}>{'> '}</Text>
+        Projects
+      </Text>
+    </View>
+
+    <View><Text
+        style={{
+          color: '#b7bcbc',
+          fontSize: 14,
+        }}
+      >
+        <Text style={{ color: '#00ff66' }}>{'> '}</Text>
+        Connect
+      </Text>
+    </View>
+
+  </View>
+
+
+  {/* MIDDLE — LET'S CONNECT */}
+  <View
+    style={{
+      flex: 1.15,
+      paddingLeft: 55,
+      paddingRight: 40,
+      borderRightWidth: 1,
+      borderRightColor: '#10191c',
+    }}
+  >
+
+    <Text
+      style={{
+        color: '#ffffff',
+        fontSize: 17,
+        fontWeight: 'bold',
+        marginBottom: 18,
+        textDecorationLine:"underline"
+
+      }}
+    >
+      Let's Connect
+    </Text>
+
+    <Text
+      style={{
+        color: '#b7bcbc',
+        fontSize: 14,
+        lineHeight: 25,
+        marginBottom: 20,
+      }}
+    >
+      Have an idea or want to collaborate?{'\n'}
+      Feel free to reach out!
+    </Text>
+<Pressable
+  onPress={() =>
+    openLink('mailto:shashwat.sharma.dev@gmail.com')
+  }
+
+  onHoverIn={() => {setisconnectHovered(true);}}
+  onHoverOut={() => {setisconnectHovered(false);}}
+
+  style={({ pressed }) => [
+    {
+      height: 48,
+      width: 160,
+      borderWidth: 2,
+      borderColor: '#00d9ff',
+      borderRadius: 5,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    isconnectHovered && {
+      backgroundColor: '#00d9ff',
+    },
+
+    pressed && {
+      backgroundColor: '#c6d0d2',
+      opacity: 0.5,
+    },
+  ]}
+>
+  <Text
+    style={{
+      color: isconnectHovered ? '#fff' : '#00d9ff',
+      fontSize: 16,
+      fontWeight: 'bold',
+    }}
+  >
+    Get In Touch
+  </Text>
+</Pressable>
+  </View>
+
+
+  {/* RIGHT — TERMINAL */}
+  <View
+    style={{
+      flex: 1.05,
+      marginLeft: 35,
+      marginRight: 25,
+      borderWidth: 2,
+      borderColor: '#006b38',
+      borderRadius: 7,
+      padding: 18,
+      justifyContent: 'center',
+    }}
+  >
+
+    {/* TERMINAL DOTS */}
+    <View
+      style={{
+        flexDirection: 'row',
+        gap: 7,
+        marginBottom: 20,
+      }}
+    >
+      <View
+        style={{
+          width: 7,
+          height: 7,
+          borderRadius: 4,
+          backgroundColor: '#00ff66',
+        }}
+      />
+
+      <View
+        style={{
+          width: 7,
+          height: 7,
+          borderRadius: 4,
+          backgroundColor: '#00ff66',
+        }}
+      />
+
+      <View
+        style={{
+          width: 7,
+          height: 7,
+          borderRadius: 4,
+          backgroundColor: '#00ff66',
+        }}
+      />
+    </View>
+
+    <Text
+      style={{
+        color: '#00ff66',
+        fontFamily: 'monospace',
+        fontSize: 12,
+        lineHeight: 29,
+      }}
+    >
+      {'> COLLABORATION.EXE'}{'\n'}
+      {'> INITIATING CONNECTION...'}{'\n'}
+      {'> READY TO BUILD SOMETHING'}{'\n'}
+      {'> AMAZING TOGETHER.'}
+    </Text>
+
+  </View>
+
+</View>
           </ScrollView>
 
         </View>
